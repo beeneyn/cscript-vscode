@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CScript Configuration",
+  "description": "Configuration file for CScript transpiler and language features",
+  "type": "object",
+  "properties": {
+    "compilerOptions": {
+      "type": "object",
+      "description": "TypeScript-like compiler options",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "Target JavaScript version",
+          "enum": ["ES5", "ES6", "ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020", "ES2021", "ES2022", "ESNext"],
+          "default": "ES2020"
+        },
+        "module": {
+          "type": "string",
+          "description": "Module system to use",
+          "enum": ["CommonJS", "AMD", "UMD", "System", "ES6", "ES2015", "ES2020", "ESNext", "None"],
+          "default": "ESNext"
+        },
+        "outDir": {
+          "type": "string",
+          "description": "Output directory for compiled files",
+          "default": "./dist"
+        },
+        "sourceMap": {
+          "type": "boolean",
+          "description": "Generate source map files",
+          "default": true
+        },
+        "strict": {
+          "type": "boolean",
+          "description": "Enable strict type checking",
+          "default": true
+        },
+        "removeComments": {
+          "type": "boolean",
+          "description": "Remove comments from output",
+          "default": false
+        },
+        "preserveConstEnums": {
+          "type": "boolean",
+          "description": "Preserve const enum declarations",
+          "default": true
+        },
+        "skipLibCheck": {
+          "type": "boolean",
+          "description": "Skip type checking of declaration files",
+          "default": true
+        }
+      }
+    },
+    "languageFeatures": {
+      "type": "object",
+      "description": "Enable/disable specific CScript language features",
+      "properties": {
+        "pipelineOperators": {
+          "type": "boolean",
+          "description": "Enable pipeline operators (|>)",
+          "default": true
+        },
+        "matchExpressions": {
+          "type": "boolean",
+          "description": "Enable match expressions with pattern matching",
+          "default": true
+        },
+        "withUpdates": {
+          "type": "boolean",
+          "description": "Enable immutable update syntax with withUpdate()",
+          "default": true
+        },
+        "autoProperties": {
+          "type": "boolean",
+          "description": "Enable auto-properties with { get; set; } syntax",
+          "default": true
+        },
+        "linqQueries": {
+          "type": "boolean",
+          "description": "Enable LINQ-style queries (from...where...select)",
+          "default": true
+        },
+        "operatorOverloading": {
+          "type": "boolean",
+          "description": "Enable operator overloading with $operator_ methods",
+          "default": true
+        },
+        "enhancedTypes": {
+          "type": "boolean",
+          "description": "Enable enhanced type system with union types and runtime validation",
+          "default": true
+        }
+      }
+    },
+    "transpilation": {
+      "type": "object",
+      "description": "Control transpilation behavior",
+      "properties": {
+        "preserveWhitespace": {
+          "type": "boolean",
+          "description": "Preserve original whitespace and formatting",
+          "default": true
+        },
+        "generateHelpers": {
+          "type": "boolean",
+          "description": "Generate helper functions for language features",
+          "default": true
+        },
+        "optimizeOutput": {
+          "type": "boolean",
+          "description": "Optimize generated JavaScript code",
+          "default": false
+        },
+        "bundleHelpers": {
+          "type": "boolean",
+          "description": "Bundle helper functions vs inline them",
+          "default": false
+        }
+      }
+    },
+    "include": {
+      "type": "array",
+      "description": "File patterns to include in compilation",
+      "items": {
+        "type": "string"
+      },
+      "default": ["src/**/*.csc", "*.csc"]
+    },
+    "exclude": {
+      "type": "array",
+      "description": "File patterns to exclude from compilation",
+      "items": {
+        "type": "string"
+      },
+      "default": ["node_modules/**/*", "dist/**/*", "**/*.d.ts"]
+    },
+    "files": {
+      "type": "array",
+      "description": "Explicit list of files to compile",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "watch": {
+      "type": "object",
+      "description": "File watching configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable file watching",
+          "default": false
+        },
+        "extensions": {
+          "type": "array",
+          "description": "File extensions to watch",
+          "items": {
+            "type": "string"
+          },
+          "default": [".csc"]
+        },
+        "ignore": {
+          "type": "array",
+          "description": "Directories to ignore when watching",
+          "items": {
+            "type": "string"
+          },
+          "default": ["node_modules", "dist"]
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "description": "Output file configuration",
+      "properties": {
+        "format": {
+          "type": "string",
+          "description": "Output module format",
+          "enum": ["module", "commonjs", "amd", "umd"],
+          "default": "module"
+        },
+        "extension": {
+          "type": "string",
+          "description": "Output file extension",
+          "default": ".js"
+        },
+        "preserveStructure": {
+          "type": "boolean",
+          "description": "Preserve directory structure in output",
+          "default": true
+        }
+      }
+    }
+  }
+}

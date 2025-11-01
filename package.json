@@ -1,0 +1,155 @@
+{
+  "name": "cscript-language-support",
+  "displayName": "CScript Language Support",
+  "description": "Syntax highlighting and language support for CScript - the hybrid programming language",
+  "version": "1.0.0",
+  "publisher": "VIBECO",
+  "icon": "icon/extensionicon.png",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "cscript",
+    "hybrid",
+    "pipeline",
+    "match",
+    "linq",
+    "operator-overloading"
+  ],
+  "activationEvents": [
+    "onLanguage:cscript"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "cscript",
+        "aliases": [
+          "CScript",
+          "cscript"
+        ],
+        "extensions": [
+          ".csc"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "dark": "icon/csscript.svg",
+          "light": "icon/csscript.svg"
+        }
+      },
+      {
+        "id": "csconfig",
+        "aliases": [
+          "CScript Config",
+          "csconfig"
+        ],
+        "filenames": [
+          "csconfig.json"
+        ],
+        "icon": {
+          "dark": "icon/csconfig.svg",
+          "light": "icon/csconfig.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cscript",
+        "scopeName": "source.cscript",
+        "path": "./syntaxes/cscript.tmLanguage.json"
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "csconfig.json",
+        "url": "./schemas/csconfig.schema.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "cscript.transpile",
+        "title": "Transpile CScript",
+        "category": "CScript"
+      },
+      {
+        "command": "cscript.run",
+        "title": "Run CScript File",
+        "category": "CScript"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "cscript.transpile",
+        "key": "ctrl+shift+t",
+        "when": "editorLangId == cscript"
+      },
+      {
+        "command": "cscript.run",
+        "key": "ctrl+shift+r",
+        "when": "editorLangId == cscript"
+      }
+    ],
+    "configuration": {
+      "title": "CScript",
+      "properties": {
+        "cscript.transpiler.outputPath": {
+          "type": "string",
+          "default": "./build",
+          "description": "Output directory for transpiled JavaScript files"
+        },
+        "cscript.transpiler.autoTranspile": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically transpile on save"
+        },
+        "cscript.debug.enableLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug logging for transpilation"
+        },
+        "cscript.diagnostics.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable syntax error checking and diagnostics"
+        },
+        "cscript.diagnostics.checkOnType": {
+          "type": "boolean",
+          "default": true,
+          "description": "Check syntax while typing (with 500ms delay)"
+        }
+      }
+    }
+  },
+  "files": [
+    "out/**",
+    "syntaxes/**",
+    "icon/**",
+    "schemas/**",
+    "language-configuration.json",
+    "README.md"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "svg2png-cli": "^1.1.1",
+    "typescript": "^4.9.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beeneyn/cscript"
+  },
+  "bugs": {
+    "url": "https://github.com/beeneyn/cscript/issues"
+  },
+  "homepage": "https://github.com/beeneyn/cscript#readme",
+  "license": "MIT"
+}
