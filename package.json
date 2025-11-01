@@ -2,7 +2,7 @@
   "name": "cscript-language-support",
   "displayName": "CScript Language Support",
   "description": "Syntax highlighting and language support for CScript - the hybrid programming language",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "VIBECO",
   "icon": "icon/extensionicon.png",
   "engines": {
